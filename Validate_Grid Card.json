@@ -5,17 +5,18 @@
     "pingOneSSOConnector",
     "variablesConnector",
     "httpConnector",
-    "functionsConnector"
+    "functionsConnector",
+    "errorConnector"
   ],
-  "createdDate": 1727198594947,
-  "currentVersion": 106,
+  "createdDate": 1727200670472,
+  "currentVersion": 111,
   "customerId": "234d1929568c290e16a53593dcd9c2ba",
-  "deployedDate": 1727198611636,
+  "deployedDate": 1727200672451,
   "description": "",
   "flowStatus": "enabled",
   "isOutputSchemaSaved": false,
   "name": "Validate Grid Card",
-  "publishedVersion": 106,
+  "publishedVersion": 111,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
@@ -23,9 +24,9 @@
     "logLevel": 3
   },
   "timeouts": "null",
-  "updatedDate": 1727198611683,
+  "updatedDate": 1727200672480,
   "flowId": "c679ba85cdc9567fc79895ebd52c792e",
-  "versionId": 106,
+  "versionId": 111,
   "graphData": {
     "elements": {
       "nodes": [
@@ -66,7 +67,12 @@
           "data": {
             "id": "swsape3w8m",
             "nodeType": "EVAL",
-            "label": "Evaluator"
+            "label": "Evaluator",
+            "properties": {
+              "qzukmlugq3": {
+                "value": "allTriggersFalse"
+              }
+            }
           },
           "position": {
             "x": 585.5,
@@ -143,6 +149,9 @@
                     "type": "number"
                   }
                 ]
+              },
+              "nodeTitle": {
+                "value": "Initialize Variables"
               }
             }
           },
@@ -346,7 +355,12 @@
         {
           "data": {
             "id": "ap8zirj5cn",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {
+              "qp6nrhas7w": {
+                "value": "allTriggersFalse"
+              }
+            }
           },
           "position": {
             "x": 1065.5,
@@ -477,11 +491,109 @@
         {
           "data": {
             "id": "ktxznxaj4r",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {
+              "sze393efiy": {
+                "value": "allTriggersFalse"
+              }
+            }
           },
           "position": {
             "x": 1636,
             "y": 238.75
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qzukmlugq3",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Failed to read user\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 727,
+            "y": 376.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qp6nrhas7w",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Failed to generate grid card challenge\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1230,
+            "y": 390
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "sze393efiy",
+            "nodeType": "CONNECTION",
+            "connectionId": "53ab83a4a4ab919d9f2cb02d9e111ac8",
+            "connectorId": "errorConnector",
+            "name": "Error Message",
+            "label": "Error Message",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorMessage": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Error attempting to validate the user response\"\n      }\n    ]\n  }\n]"
+              },
+              "errorCode": {
+                "value": "400"
+              }
+            }
+          },
+          "position": {
+            "x": 1800,
+            "y": 420
           },
           "group": "nodes",
           "removed": false,
@@ -721,6 +833,63 @@
           "grabbable": true,
           "pannable": true,
           "classes": ""
+        },
+        {
+          "data": {
+            "id": "3oxxpi5o61",
+            "source": "swsape3w8m",
+            "target": "qzukmlugq3"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "n68sc1yau5",
+            "source": "ap8zirj5cn",
+            "target": "qp6nrhas7w"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "zuu12sdpo5",
+            "source": "ktxznxaj4r",
+            "target": "sze393efiy"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
         }
       ]
     },
@@ -742,57 +911,23 @@
     }
   },
   "flowColor": "#E3F0FF",
-  "savedDate": 1727198594774,
+  "savedDate": 1727200670271,
   "variables": [
     {
       "context": "flowInstance",
-      "createdDate": 1726601188366,
+      "createdDate": 1727196250436,
       "customerId": "234d1929568c290e16a53593dcd9c2ba",
       "fields": {
-        "type": "object",
+        "type": "string",
         "displayName": "",
         "mutable": true,
         "min": 0,
         "max": 2000
       },
-      "id": "4b44e080-e6d5-4dc3-93b4-a1c4254b60cd",
+      "id": "f7f675a0-fb25-4d02-99f4-64e4ef8a451d",
       "type": "property",
       "visibility": "private",
-      "name": "currentGC##SK##flowInstance",
-      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
-    },
-    {
-      "context": "flowInstance",
-      "createdDate": 1726790053603,
-      "customerId": "234d1929568c290e16a53593dcd9c2ba",
-      "fields": {
-        "type": "number",
-        "displayName": "",
-        "mutable": true,
-        "min": 0,
-        "max": 2000
-      },
-      "id": "fea1e339-97ad-423f-8793-da91df3aa27d",
-      "type": "property",
-      "visibility": "private",
-      "name": "numAllowedCols##SK##flowInstance",
-      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
-    },
-    {
-      "context": "flowInstance",
-      "createdDate": 1726790034768,
-      "customerId": "234d1929568c290e16a53593dcd9c2ba",
-      "fields": {
-        "type": "number",
-        "displayName": "",
-        "mutable": true,
-        "min": 0,
-        "max": 2000
-      },
-      "id": "cd1cf199-a64f-4e84-ae29-a6a5f89334b9",
-      "type": "property",
-      "visibility": "private",
-      "name": "numAllowedRows##SK##flowInstance",
+      "name": "userId##SK##flowInstance",
       "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
     },
     {
@@ -810,23 +945,6 @@
       "type": "property",
       "visibility": "private",
       "name": "numCheck##SK##flowInstance",
-      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
-    },
-    {
-      "context": "flowInstance",
-      "createdDate": 1727196250436,
-      "customerId": "234d1929568c290e16a53593dcd9c2ba",
-      "fields": {
-        "type": "string",
-        "displayName": "",
-        "mutable": true,
-        "min": 0,
-        "max": 2000
-      },
-      "id": "f7f675a0-fb25-4d02-99f4-64e4ef8a451d",
-      "type": "property",
-      "visibility": "private",
-      "name": "userId##SK##flowInstance",
       "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
     },
     {
@@ -865,6 +983,57 @@
       "updatedDate": 1727115884155,
       "visibility": "private",
       "name": "validRows##SK##company",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790053603,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "fea1e339-97ad-423f-8793-da91df3aa27d",
+      "type": "property",
+      "visibility": "private",
+      "name": "numAllowedCols##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790034768,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "cd1cf199-a64f-4e84-ae29-a6a5f89334b9",
+      "type": "property",
+      "visibility": "private",
+      "name": "numAllowedRows##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726601188366,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "object",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "4b44e080-e6d5-4dc3-93b4-a1c4254b60cd",
+      "type": "property",
+      "visibility": "private",
+      "name": "currentGC##SK##flowInstance",
       "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
     }
   ],
