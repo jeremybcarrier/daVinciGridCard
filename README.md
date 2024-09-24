@@ -1,22 +1,22 @@
 # daVinciGridCard
 Grid card implementation via DaVinci
 
-###This project is not a product provided by PingIdentity and is not supported by PingIdentity.
+### This project is not a product provided by PingIdentity and is not supported by PingIdentity.
 
-##What this project provides
+## What this project provides
 This project provides a DaVinci implementation of legacy multifactor grid cards.  It provides a mechanism to generate grid cards and store them against users in PingOne as well as validate a user by asking for values from the grid card.
 
-##Pre-requisites
+## Pre-requisites
 - A PingOne ecosystem with DaVinci as an added service
 - A custom User Attribute in PingOne called gridCard of type JSON
 
-##To Use
+## To Use
 - Import the two flows to your DaVinci environment
 - Update your variables using the Initialize Variables node at the beginning of each flow
 - Use Generate Key to create and store a grid card for a user
 - Use Validate Grid Card to test the user's grid card
 
-##Notes
+## Notes
 - I'm not a UI person, so WYSIWYG - you'll probably wan't to build a nicer UI for this
 - This project is built for standalone use.  It can easily be adapted to use in a PingOne flow or other use cases, but instructions for such are not included.
 - In the Generate Key flow, the Initialize Variable node:
