@@ -1,0 +1,872 @@
+{
+  "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "pingOneSSOConnector",
+    "variablesConnector",
+    "httpConnector",
+    "functionsConnector"
+  ],
+  "createdDate": 1727198594947,
+  "currentVersion": 106,
+  "customerId": "234d1929568c290e16a53593dcd9c2ba",
+  "deployedDate": 1727198611636,
+  "description": "",
+  "flowStatus": "enabled",
+  "isOutputSchemaSaved": false,
+  "name": "Validate Grid Card",
+  "publishedVersion": 106,
+  "settings": {
+    "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
+    "logLevel": 3
+  },
+  "timeouts": "null",
+  "updatedDate": 1727198611683,
+  "flowId": "c679ba85cdc9567fc79895ebd52c792e",
+  "versionId": 106,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "9q0rnkjvde",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "readUser",
+            "type": "action",
+            "properties": {
+              "identifier": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"userId\",\n        \"data\": \"{{global.variables.userId}}\",\n        \"tooltip\": \"{{global.variables.userId}}\",\n        \"children\": [\n          {\n            \"text\": \"userId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Read grid card by user ID"
+              }
+            }
+          },
+          "position": {
+            "x": 488,
+            "y": 238.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "swsape3w8m",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 585.5,
+            "y": 239.75
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "1s2ymqlduv",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 382.5,
+            "y": 238.25
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "4j50zofden",
+            "nodeType": "CONNECTION",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
+            "status": "configured",
+            "capabilityName": "saveValue",
+            "type": "trigger",
+            "properties": {
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "numCheck",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"4\"\n      }\n    ]\n  }\n]",
+                    "key": 0.49832570018876865,
+                    "label": "numCheck (number - flowInstance)",
+                    "type": "number"
+                  },
+                  {
+                    "name": "userId",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.5548630527615002,
+                    "label": "userId (string - flowInstance)",
+                    "type": "string"
+                  },
+                  {
+                    "name": "numAllowedCols",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"6\"\n      }\n    ]\n  }\n]",
+                    "key": 0.5356867236722271,
+                    "label": "numAllowedCols (number - flowInstance)",
+                    "type": "number"
+                  },
+                  {
+                    "name": "numAllowedRows",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"6\"\n      }\n    ]\n  }\n]",
+                    "key": 0.43600633689202195,
+                    "label": "numAllowedRows (number - flowInstance)",
+                    "type": "number"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 277,
+            "y": 238
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ivhz1bjofh",
+            "nodeType": "CONNECTION",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
+            "status": "configured",
+            "capabilityName": "saveValue",
+            "type": "trigger",
+            "properties": {
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "currentGC",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"moustache\",\n        \"data\": \"{{local.9q0rnkjvde.payload.output.user.gridCard}}\",\n        \"name\": \"gridCard\",\n        \"children\": [\n          {\n            \"text\": \"\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.29838516492205547,
+                    "label": "currentGC (object - flowInstance)",
+                    "type": "object",
+                    "nameDefault": "timezone"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 718,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "gumm6bwyh5",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 838,
+            "y": 241.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8w5a0uhrut",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "<div\n    class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n    <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n        <div class=\"card shadow mb-5\">\n            <div class=\"card-body p-5 d-flex flex-column\">\n                <p class=\"text-danger mdi mdi-alert-circle\" data-id=\"feedback\" data-skcomponent=\"skerror\"></p>\n                <form id=\"usernamePasswordForm\" data-id=\"usernamePasswordForm\">\n                    {{#each gcAsk}}\n                      {{this}} <input class=\"form-control\" type=\"text\" id=\"gcValues_{{@index}}\" name=\"gcValues_{{@index}}\" autocomplete=\"off\" value=\"\"><br>\n                    {{/each}}\n                    <input class=\"form-control\" type=\"text\" id=\"gcValues\" name=\"gcValues\" placeholder=\"gcValues\"\n                            autocomplete=\"off\" value=\"\" data-id=\"gcValues\" hidden/>\n                    <div class=\"d-flex flex-column\">\n                        <button data-id=\"button\" type=\"submit\" class=\"btn btn-primary mb-3\" data-skcomponent=\"skbutton\"\n                            data-skbuttontype=\"form-submit\" data-skform=\"usernamePasswordForm\" id=\"submit\" name=\"submit\"\n                            data-skbuttonvalue=\"SIGNON\" hidden>\n                            Sign On\n                        </button>\n                        <button name=\"validate\" id=\"validate\">Validate</button>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue"
+                  },
+                  {
+                    "propertyName": "gcValues",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "Object",
+                    "value": "",
+                    "hashedVisibility": false
+                  }
+                ]
+              },
+              "inputSchema": {
+                "value": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"gcAsk\": {\n\t\t\t\"type\": \"array\",\n\t\t\t\"displayName\": \"gcAsk\",\n\t\t\t\"propertyName\": \"gcAsk\"\n\t\t}, \n\t\t\"count\":{\n\t\t\t\"type\": \"number\",\n\t\t\t\"displayName\": \"count\",\n\t\t\t\"propertyName\": \"count\"\n\t\t}\n    }\n}"
+              },
+              "gcAsk": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"gcAsk\",\n        \"data\": \"{{local.kyb0pg4yjh.payload.output.gcAsk}}\",\n        \"tooltip\": \"{{local.kyb0pg4yjh.payload.output.gcAsk}}\",\n        \"children\": [\n          {\n            \"text\": \"gcAsk\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "count": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numCheck\",\n        \"data\": \"{{global.variables.numCheck}}\",\n        \"tooltip\": \"{{global.variables.numCheck}}\",\n        \"children\": [\n          {\n            \"text\": \"numCheck\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "customScript": {
+                "value": "function concatenateValues() {\n    let count = {{count}}\n    let gcValues = []\n    let submitButton = document.getElementById(\"submit\")\n\n    for(let index = 0; index < count; index++) {\n        gcValues[index] = document.getElementById(\"gcValues_\" + index).value\n    }\n\n    console.log(submitButton)\n    \n    document.getElementById(\"gcValues\").setAttribute(\"value\",gcValues)\n\n    submitButton.click()\n}\n\ndocument.getElementById(\"validate\").addEventListener('click', concatenateValues);"
+              },
+              "nodeTitle": {
+                "value": "Get Grid Card Values from User"
+              }
+            }
+          },
+          "position": {
+            "x": 1230,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "kyb0pg4yjh",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "customFunction",
+            "type": "trigger",
+            "properties": {
+              "variableInputList": {
+                "value": [
+                  {
+                    "name": "count",
+                    "preferredDataType": "number",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numCheck\",\n        \"data\": \"{{global.variables.numCheck}}\",\n        \"tooltip\": \"{{global.variables.numCheck}}\",\n        \"children\": [\n          {\n            \"text\": \"numCheck\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "validColumns",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"validColumns\",\n        \"data\": \"{{global.company.variables.validColumns}}\",\n        \"tooltip\": \"{{global.company.variables.validColumns}}\",\n        \"children\": [\n          {\n            \"text\": \"validColumns\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "validRows",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"validRows\",\n        \"data\": \"{{global.company.variables.validRows}}\",\n        \"tooltip\": \"{{global.company.variables.validRows}}\",\n        \"children\": [\n          {\n            \"text\": \"validRows\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "numAllowedCols",
+                    "preferredDataType": "number",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numAllowedCols\",\n        \"data\": \"{{global.variables.numAllowedCols}}\",\n        \"tooltip\": \"{{global.variables.numAllowedCols}}\",\n        \"children\": [\n          {\n            \"text\": \"numAllowedCols\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "numAllowedRows",
+                    "preferredDataType": "number",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numAllowedRows\",\n        \"data\": \"{{global.variables.numAllowedRows}}\",\n        \"tooltip\": \"{{global.variables.numAllowedRows}}\",\n        \"children\": [\n          {\n            \"text\": \"numAllowedRows\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "code": {
+                "value": "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) => {\n  //count is the number of cell values we will ask the customer to provide\n  let count = params.count\n  //validRows is the list of valid row headers (ie 0, 1, 2, etc.)\n  let validRows = params.validRows\n  //validColumns is the list of valid column headers (ie A, B, C, etc.)\n  let validColumns = params.validColumns\n  //numAllowedCols is the number of columns present on user's grid card\n  let numAllowedCols = params.numAllowedCols\n  //numAllowedRows is the number of rows present on the user's grid card\n  let numAllowedRows = params.numAllowedRows\n  //gridCardAsk will be an array of cell identifiers (ie A1, B2, C3, etc) that we will use to prompt the user to validate their grid card\n  let gridCardAsk = []\n  let randomColumn = \"\"\n  let randomRow = \"\"\n\n  for(let index = 0; index < count; index++) {\n    //Pick a random column header name from the list of available headers\n    randomColumn = validColumns[Math.floor(Math.random() * numAllowedCols)]\n    //Pick a random row name from the list of available headers\n    randomRow = validRows[Math.floor(Math.random() * numAllowedRows)]\n\n    gridCardAsk[index] = randomColumn + randomRow\n  }\n\n\treturn {'gcAsk': gridCardAsk}\n}"
+              },
+              "outputSchema": {
+                "value": "{\n\t\"output\": {\n\t\t\"type\": \"object\",\n\t\t\"properties\": {\n\t\t\t\"gcAsk\": {\n\t\t\t\t\"type\": \"object\"\n\t\t\t}\n\t\t}\n\t}\n}"
+              },
+              "nodeTitle": {
+                "value": "Get random grid item list"
+              }
+            }
+          },
+          "position": {
+            "x": 960,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ap8zirj5cn",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1065.5,
+            "y": 240.25
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "4otqazkdvr",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 1334.5,
+            "y": 237.25
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ia25dtkwdo",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"My grid result is: \"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"url:j0k6tcyf07\",\n        \"url\": \"gridValues\",\n        \"data\": \"{{local.j0k6tcyf07.payload.output.gridValues}}\",\n        \"tooltip\": \"{{local.j0k6tcyf07.payload.output.gridValues}}\",\n        \"children\": [\n          {\n            \"text\": \"{{local.j0k6tcyf07.payload.output.gridValues}}\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "messageTitle": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"result\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Return result"
+              },
+              "nodeDescription": {
+                "value": "True = passed, failed = not passed"
+              }
+            }
+          },
+          "position": {
+            "x": 1800,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "j0k6tcyf07",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "customFunction",
+            "type": "trigger",
+            "properties": {
+              "nodeTitle": {
+                "value": "Validate Provided Grid Values"
+              },
+              "variableInputList": {
+                "value": [
+                  {
+                    "name": "gridValues",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"gcValues\",\n        \"data\": \"{{local.8w5a0uhrut.payload.output.gcValues}}\",\n        \"tooltip\": \"{{local.8w5a0uhrut.payload.output.gcValues}}\",\n        \"children\": [\n          {\n            \"text\": \"gcValues\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "gridCard",
+                    "preferredDataType": "object",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"currentGC\",\n        \"data\": \"{{global.variables.currentGC}}\",\n        \"tooltip\": \"{{global.variables.currentGC}}\",\n        \"children\": [\n          {\n            \"text\": \"currentGC\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "gridItemList",
+                    "preferredDataType": "object",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"gcAsk\",\n        \"data\": \"{{local.kyb0pg4yjh.payload.output.gcAsk}}\",\n        \"tooltip\": \"{{local.kyb0pg4yjh.payload.output.gcAsk}}\",\n        \"children\": [\n          {\n            \"text\": \"gcAsk\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "code": {
+                "value": "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) => {\n  //gridValues is the set of responses provided by the user\n  let gridValues = params.gridValues.split(',')\n  //gridCard is the user's entire grid card, in JSON format\n  let gridCard = params.gridCard\n  //gridItemList is the set of cells that the user was asked to check\n  let gridItemList = params.gridItemList\n  let isValidated = \"true\"\n  \n  //Iterate over the list of cells the user was asked about\n  gridItemList.forEach(function (myGridItem, myIndex) {\n    //myGridItem is a two character string, with the first character being the row and the second character being the column\n    if((gridCard[myGridItem[0]][myGridItem[1]] == gridValues[myIndex].toUpperCase()) && isValidated == \"true\") {\n      //If the grid card value and the value that the user provided match, keep iterating (as long as another value check hasn't already failed)\n    } else {\n      //If the grid card value and the value that the user provided don't match, we failed\n      isValidated = \"false\"\n    }\n  })\n\n  return({\"gridValues\":isValidated})\n}"
+              },
+              "outputSchema": {
+                "value": "{\n\t\"output\": {\n\t\t\"type\": \"object\",\n\t\t\"properties\": {\n\t\t\t\"gridValues\": {\n\t\t\t\t\"type\": \"string\"\n\t\t\t}\n\t\t}\n\t}\n}"
+              }
+            }
+          },
+          "position": {
+            "x": 1500,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ktxznxaj4r",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1636,
+            "y": 238.75
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "og0ct4er8t",
+            "source": "swsape3w8m",
+            "target": "ivhz1bjofh"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "n82tdgm86z",
+            "source": "ivhz1bjofh",
+            "target": "gumm6bwyh5"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "au6rmi1peb",
+            "source": "1s2ymqlduv",
+            "target": "9q0rnkjvde"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "z7jl2fgzjx",
+            "source": "9q0rnkjvde",
+            "target": "swsape3w8m"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "r3hnswtrpx",
+            "source": "4j50zofden",
+            "target": "1s2ymqlduv"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "nu024ivoru",
+            "source": "gumm6bwyh5",
+            "target": "kyb0pg4yjh"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "n3jy7d5c91",
+            "source": "kyb0pg4yjh",
+            "target": "ap8zirj5cn"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "upeug9gil3",
+            "source": "ap8zirj5cn",
+            "target": "8w5a0uhrut"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "opeb2hq1et",
+            "source": "8w5a0uhrut",
+            "target": "4otqazkdvr"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ef231kmxmf",
+            "source": "4otqazkdvr",
+            "target": "j0k6tcyf07"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "wvgap0r29c",
+            "source": "j0k6tcyf07",
+            "target": "ktxznxaj4r"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "nka3xd3ldw",
+            "source": "ktxznxaj4r",
+            "target": "ia25dtkwdo"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "flowColor": "#E3F0FF",
+  "savedDate": 1727198594774,
+  "variables": [
+    {
+      "context": "flowInstance",
+      "createdDate": 1726601188366,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "object",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "4b44e080-e6d5-4dc3-93b4-a1c4254b60cd",
+      "type": "property",
+      "visibility": "private",
+      "name": "currentGC##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790053603,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "fea1e339-97ad-423f-8793-da91df3aa27d",
+      "type": "property",
+      "visibility": "private",
+      "name": "numAllowedCols##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790034768,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "cd1cf199-a64f-4e84-ae29-a6a5f89334b9",
+      "type": "property",
+      "visibility": "private",
+      "name": "numAllowedRows##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726601157836,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "73fe4163-f1c2-4e92-b518-c37914eb5074",
+      "type": "property",
+      "visibility": "private",
+      "name": "numCheck##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1727196250436,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "f7f675a0-fb25-4d02-99f4-64e4ef8a451d",
+      "type": "property",
+      "visibility": "private",
+      "name": "userId##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "company",
+      "createdDate": 1726789892262,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "value": "ABCDEFGHJKLMNPQRSTUVWXYZ",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "7cfd2380-b878-42b7-8924-27ebc7ea06a8",
+      "type": "property",
+      "updatedDate": 1727115895992,
+      "visibility": "private",
+      "name": "validColumns##SK##company",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "company",
+      "createdDate": 1726789859169,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "value": "0123456789",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "1325589b-08a8-46e9-8fc3-d3181a2c70af",
+      "type": "property",
+      "updatedDate": 1727115884155,
+      "visibility": "private",
+      "name": "validRows##SK##company",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    }
+  ],
+  "connections": []
+}

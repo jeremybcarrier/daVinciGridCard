@@ -1,0 +1,571 @@
+{
+  "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "httpConnector",
+    "functionsConnector",
+    "pingOneSSOConnector",
+    "variablesConnector"
+  ],
+  "createdDate": 1727198648429,
+  "currentVersion": 172,
+  "customerId": "234d1929568c290e16a53593dcd9c2ba",
+  "deployedDate": 1727198663366,
+  "description": "",
+  "flowStatus": "enabled",
+  "isOutputSchemaSaved": false,
+  "name": "Generate Key",
+  "publishedVersion": 172,
+  "settings": {
+    "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
+    "logLevel": 3
+  },
+  "timeouts": "null",
+  "updatedDate": 1727198663400,
+  "flowId": "9aa7e6a79678d2dd6745990026254329",
+  "versionId": 172,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "9ndgjxmzbj",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"New Grid Card\\n---------------\\n\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"gridCardReturn\",\n        \"data\": \"{{local.lhxcnt1wx7.payload.output.gridCardReturn}}\",\n        \"tooltip\": \"{{local.lhxcnt1wx7.payload.output.gridCardReturn}}\",\n        \"children\": [\n          {\n            \"text\": \"gridCardReturn\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Display Grid Card Result"
+              },
+              "inputSchema": {},
+              "gridCard": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"gridCardReturn\",\n        \"data\": \"{{local.lhxcnt1wx7.payload.output.gridCardReturn}}\",\n        \"tooltip\": \"{{local.lhxcnt1wx7.payload.output.gridCardReturn}}\",\n        \"children\": [\n          {\n            \"text\": \"gridCardReturn\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "customCSS": {
+                "value": ".flex-column {\n  display: flex;\n  flex-direction:column;\n  flex: 0 0 50px;\n}\n\n.flex-row {\n  display: flex;\n  flex-direction: row;\n}\n\n"
+              },
+              "customHTML": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"<div id=\\\"gridCardDiv\\\" name=\\\"gridCardDiv\\\" class=\\\"flex-column\\\">\\n</div>\"\n      }\n    ]\n  }\n]"
+              },
+              "customScript": {
+                "value": "//Div element in HTML\nlet gridCardDiv = document.getElementById(\"gridCardDiv\")\n//Output from grid card creation node\nlet thisGridCard = {{local.lhxcnt1wx7.payload.output.gridCardReturn}}\n//Initialize a string to hold updated HTML\nlet myInnerHtml = \"\"\n//Count of columns in the grid card\nlet column_count = Object.keys(thisGridCard).length;\n//Count of rows in the grid card\nlet row_count = Object.keys(Object.values(thisGridCard)[0]).length;\n//Grid card is stored as JSON, but it's much easier to handle as an array\n//Note: grid card is currently stored with columns at top level and rows as children - would actually be a lot easier to deal with if it were done the other way around\nlet gridArray = []\nlet column_index = 0\nlet row_index = 0\n\n//Initialize a multi-dimensional array in row vs. column format\nfor(row_index = 0; row_index <= row_count; row_index++) {\n  gridArray[row_index] = []\n  for(column_index = 0; column_index <= column_count; column_index++) {\n    gridArray[row_index][column_index] = \"\"\n  }\n}\n\n//Populate the array with values from the JSON\nfor(row_index = 0; row_index <= row_count; row_index++) {\n  for(column_index = 0; column_index <= column_count; column_index++) {\n    //Create the column header row\n    if(row_index == 0) {\n      if(column_index < column_count) {\n        gridArray[row_index][column_index + 1] = Object.keys(thisGridCard)[column_index]\n      }\n    } else {\n      //Create the header for the current row\n      if(column_index == 0) {\n        gridArray[row_index][column_index] = Object.keys(Object.values(thisGridCard)[column_index])[row_index - 1]\n      } else {\n        //Populate grid values into the array\n        gridArray[row_index][column_index] = Object.values(Object.values(thisGridCard)[column_index - 1])[row_index - 1]\n      }\n      \n    }\n    \n  }\n}\n\n//Iterate over the rows in the array\ngridArray.forEach(function (row_value, row_index) {\n    //Create a flex row container for each row\n    myInnerHtml += \"<div class='flex-row'>\"\n    row_value.forEach(function (column_value, column_index) {\n      if(row_index == 0) {\n        if(column_index == 0) {\n          //The cell at the first column of the first row is not used, color it black\n          myInnerHtml += \"<div style='background-color:black' class='flex-column'> </div>\"\n        } else {\n          //The cells in the first row are headers for columns, color them purple\n          myInnerHtml += \"<div style='background-color:purple' class='flex-column'>\" + column_value + \"</div>\"\n        }\n      } else {\n        if(column_index == 0) {\n          //The first cell of each row is a row header, color them yellow\n          myInnerHtml += \"<div style='background-color:yellow' class='flex-column'>\" + column_value + \"</div>\"\n        } else {\n          //The remaining cells are grid card values, leave them white\n          myInnerHtml += \"<div style='background-color:white' class='flex-column'>\" + column_value + \"</div>\"\n        }\n      }\n      \n    })\n    myInnerHtml += \"</div>\"\n});\n\n\ngridCardDiv.innerHTML = myInnerHtml\n\n"
+              }
+            },
+            "idUnique": "n5yp21qt49"
+          },
+          "position": {
+            "x": 1020,
+            "y": 240
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "lhxcnt1wx7",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "customFunction",
+            "type": "trigger",
+            "properties": {
+              "code": {
+                "value": "module.exports = a = async ({params}) => {\n\n//Valid values for row headers, stored in a company variable\nlet validRows = params.validRows\n//Valid values for column headers, stored in a company variable\nlet validColumns = params.validColumns\n//Characters allowed in values in the grid, stored in a company variable\nlet validValuesInGrid = params.validValuesInGrid\n//Number of columns that the generated grid card will have\nlet numAllowedCols = params.numAllowedCols\n//Numberr of rows that the generated grid card will have\nlet numAllowedRows = params.numAllowedRows\n//Number of characters that should ee stored in each cell\nlet numCharsPerCell = params.numCharsPerCell\n\n//** Perform data integrity checks **\n//Ensure that the number of requested rows doesn't exceed the possible values\nif (numAllowedCols > validColumns.length) { return({\"gridCardReturn\":{\"Error\":\"Requested number of colums exceeds number of valid column names\"}}) }\n//Ensure that the number of requested columns doesn't exceed the possible values\nif (numAllowedRows > validRows.length) { return({\"gridCardReturn\":{\"Error\":\"Requested number of rows exceeds number of valid row names\"}}) }\n\n//Generate an empty grid card\nfunction initializeGridCard(gridCard, validRows, validColumns, numAllowedCols, numAllowedRows) {\n  for( let column_index = 0; column_index < parseInt(numAllowedCols); column_index++) {\n    let current_column = validColumns.charAt(column_index)\n    gridCard[current_column] = {}\n\n    for(let row_index = 0; row_index < numAllowedRows; row_index++) {\n      current_row = validRows.charAt(row_index)\n      gridCard[current_column][current_row] = null\n    }\n  }\n\n  return gridCard  \n}\n\n//Put values into the grid card cells\nfunction populateGridCard(gridCard, numCharsPerCell, validValuesInGrid) {\n  for (const [column_key, column_value] of Object.entries(gridCard)) {\n    for (const [row_key, row_value] of Object.entries(column_value)) {\n      let cellValue = \"\"\n      for (cellValueIndex = 0; cellValueIndex < numCharsPerCell; cellValueIndex++) {\n        cellValue += validValuesInGrid.charAt(Math.floor(Math.random() * validValuesInGrid.length))\n      }\n      gridCard[column_key][row_key] = cellValue\n    } \n  }\n}\n\nlet gridCard = {}\n\ngridCard = initializeGridCard(gridCard, validRows, validColumns, numAllowedCols, numAllowedRows)\n\npopulateGridCard(gridCard, numCharsPerCell, validValuesInGrid)\n\n/*function makeid(length) {\n    let result = '';\n    //All capital letters except \"O\" and all numbers\n    const characters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';\n    const charactersLength = characters.length;\n    let counter = 0;\n    while (counter < length) {\n      result += characters.charAt(Math.floor(Math.random() * charactersLength));\n      counter += 1;\n    }\n    return result;\n}*/\n\n/*let gridValues = {}\ngridValues[\"A\"] = {}\ngridValues[\"B\"] = {}\ngridValues[\"C\"] = {}\ngridValues[\"D\"] = {}\ngridValues[\"E\"] = {}\ngridValues[\"F\"] = {}\ngridValues[\"G\"] = {}\ngridValues[\"H\"] = {}\ngridValues[\"I\"] = {}\ngridValues[\"J\"] = {}\n*/\n/*\n//A-K (not I)\nfor (let myLetter = 0; myLetter < 10; myLetter++) {\n  //0-9\n  for(let myNumber = 0; myNumber < 10; myNumber++) {\n    gridValues[String.fromCharCode(65 + myLetter)][myNumber] = makeid(2)\n  }\n\n}\n*/\nreturn {\"gridCardReturn\":gridCard}\n\n}"
+              },
+              "outputSchema": {
+                "value": "{\n\t\"output\": {\n\t\t\"type\": \"object\",\n\t\t\"properties\": {\n\t\t\t\"gridCardReturn\": {\n\t\t\t\t\"type\": \"object\"\n\t\t\t}\n\t\t}\n\t}\n}"
+              },
+              "variableInputList": {
+                "value": [
+                  {
+                    "name": "numAllowedRows",
+                    "preferredDataType": "number",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numAllowedRows\",\n        \"data\": \"{{global.variables.numAllowedRows}}\",\n        \"tooltip\": \"{{global.variables.numAllowedRows}}\",\n        \"children\": [\n          {\n            \"text\": \"numAllowedRows\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "numAllowedCols",
+                    "preferredDataType": "number",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numAllowedCols\",\n        \"data\": \"{{global.variables.numAllowedCols}}\",\n        \"tooltip\": \"{{global.variables.numAllowedCols}}\",\n        \"children\": [\n          {\n            \"text\": \"numAllowedCols\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "validColumns",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"validColumns\",\n        \"data\": \"{{global.company.variables.validColumns}}\",\n        \"tooltip\": \"{{global.company.variables.validColumns}}\",\n        \"children\": [\n          {\n            \"text\": \"validColumns\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "validRows",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"validRows\",\n        \"data\": \"{{global.company.variables.validRows}}\",\n        \"tooltip\": \"{{global.company.variables.validRows}}\",\n        \"children\": [\n          {\n            \"text\": \"validRows\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "validValuesInGrid",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"validValuesInGrid\",\n        \"data\": \"{{global.company.variables.validValuesInGrid}}\",\n        \"tooltip\": \"{{global.company.variables.validValuesInGrid}}\",\n        \"children\": [\n          {\n            \"text\": \"validValuesInGrid\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "numCharsPerCell",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"numCharsPerCell\",\n        \"data\": \"{{global.variables.numCharsPerCell}}\",\n        \"tooltip\": \"{{global.variables.numCharsPerCell}}\",\n        \"children\": [\n          {\n            \"text\": \"numCharsPerCell\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Generate a Grid Card"
+              }
+            }
+          },
+          "position": {
+            "x": 503,
+            "y": 236.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "z9drwpkmo7",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 608,
+            "y": 236.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "l01ixw1whi",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "updateUser",
+            "type": "action",
+            "properties": {
+              "additionalUserProperties": {
+                "value": [
+                  {
+                    "name": "gridCard",
+                    "preferredDataType": "object",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"gridCardReturn\",\n        \"data\": \"{{local.lhxcnt1wx7.payload.output.gridCardReturn}}\",\n        \"tooltip\": \"{{local.lhxcnt1wx7.payload.output.gridCardReturn}}\",\n        \"children\": [\n          {\n            \"text\": \"gridCardReturn\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "identifier": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"userId\",\n        \"data\": \"{{global.variables.userId}}\",\n        \"tooltip\": \"{{global.variables.userId}}\",\n        \"children\": [\n          {\n            \"text\": \"userId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Set Grid Card Value for User"
+              }
+            }
+          },
+          "position": {
+            "x": 730,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "rtwg1nzzfa",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 856,
+            "y": 240.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "cgdeumsoq1",
+            "nodeType": "EVAL",
+            "label": "Evaluator"
+          },
+          "position": {
+            "x": 393.5,
+            "y": 234.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "m0ybzpwcqr",
+            "nodeType": "CONNECTION",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
+            "status": "configured",
+            "capabilityName": "saveValue",
+            "type": "trigger",
+            "properties": {
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "numAllowedCols",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"6\"\n      }\n    ]\n  }\n]",
+                    "key": 0.7828881793051323,
+                    "label": "numAllowedCols (number - flowInstance)",
+                    "type": "number"
+                  },
+                  {
+                    "name": "numAllowedRows",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"6\"\n      }\n    ]\n  }\n]",
+                    "key": 0.7037190679567715,
+                    "label": "numAllowedRows (number - flowInstance)",
+                    "type": "number"
+                  },
+                  {
+                    "name": "numCharsPerCell",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"2\"\n      }\n    ]\n  }\n]",
+                    "key": 0.3938628697869506,
+                    "label": "numCharsPerCell (number - flowInstance)",
+                    "type": "number"
+                  },
+                  {
+                    "name": "userId",
+                    "value": null,
+                    "key": 0.5249081799137181,
+                    "label": "userId (string - flowInstance)",
+                    "type": "string"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Initialize Variables"
+              }
+            }
+          },
+          "position": {
+            "x": 277,
+            "y": 236.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "pj7dlzf86p",
+            "source": "lhxcnt1wx7",
+            "target": "z9drwpkmo7"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "v5xwhzmldu",
+            "source": "z9drwpkmo7",
+            "target": "l01ixw1whi"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "45wgmffrqg",
+            "source": "l01ixw1whi",
+            "target": "rtwg1nzzfa"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "cpn5uo5ucu",
+            "source": "rtwg1nzzfa",
+            "target": "9ndgjxmzbj"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ehiv95ca0u",
+            "source": "cgdeumsoq1",
+            "target": "lhxcnt1wx7"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "3lbuvgyyk7",
+            "source": "m0ybzpwcqr",
+            "target": "cgdeumsoq1"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "flowColor": "#E3F0FF",
+  "savedDate": 1727198648259,
+  "variables": [
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790053603,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "fea1e339-97ad-423f-8793-da91df3aa27d",
+      "type": "property",
+      "visibility": "private",
+      "name": "numAllowedCols##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790034768,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "cd1cf199-a64f-4e84-ae29-a6a5f89334b9",
+      "type": "property",
+      "visibility": "private",
+      "name": "numAllowedRows##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1726790583145,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "2ee9abab-fd25-4f43-a9ad-afe5c9f9a24a",
+      "type": "property",
+      "visibility": "private",
+      "name": "numCharsPerCell##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1727196250436,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "f7f675a0-fb25-4d02-99f4-64e4ef8a451d",
+      "type": "property",
+      "visibility": "private",
+      "name": "userId##SK##flowInstance",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "company",
+      "createdDate": 1726789892262,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "value": "ABCDEFGHJKLMNPQRSTUVWXYZ",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "7cfd2380-b878-42b7-8924-27ebc7ea06a8",
+      "type": "property",
+      "updatedDate": 1727115895992,
+      "visibility": "private",
+      "name": "validColumns##SK##company",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "company",
+      "createdDate": 1726789859169,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "value": "0123456789",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "1325589b-08a8-46e9-8fc3-d3181a2c70af",
+      "type": "property",
+      "updatedDate": 1727115884155,
+      "visibility": "private",
+      "name": "validRows##SK##company",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    },
+    {
+      "context": "company",
+      "createdDate": 1726789981699,
+      "customerId": "234d1929568c290e16a53593dcd9c2ba",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "value": "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789",
+        "min": 0,
+        "max": 2000
+      },
+      "id": "fb13f70e-b68a-4dd7-afce-ddff817e3538",
+      "type": "property",
+      "visibility": "private",
+      "name": "validValuesInGrid##SK##company",
+      "companyId": "ffe12e27-6153-484d-be72-2bc01abedad9"
+    }
+  ],
+  "connections": []
+}
