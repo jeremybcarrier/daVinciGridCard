@@ -7,15 +7,15 @@
     "pingOneSSOConnector",
     "variablesConnector"
   ],
-  "createdDate": 1727198648429,
-  "currentVersion": 172,
+  "createdDate": 1727200488311,
+  "currentVersion": 176,
   "customerId": "234d1929568c290e16a53593dcd9c2ba",
-  "deployedDate": 1727198663366,
+  "deployedDate": 1727200489077,
   "description": "",
   "flowStatus": "enabled",
   "isOutputSchemaSaved": false,
   "name": "Generate Key",
-  "publishedVersion": 172,
+  "publishedVersion": 176,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
@@ -23,9 +23,9 @@
     "logLevel": 3
   },
   "timeouts": "null",
-  "updatedDate": 1727198663400,
+  "updatedDate": 1727200489121,
   "flowId": "9aa7e6a79678d2dd6745990026254329",
-  "versionId": 172,
+  "versionId": 176,
   "graphData": {
     "elements": {
       "nodes": [
@@ -89,7 +89,7 @@
             "type": "trigger",
             "properties": {
               "code": {
-                "value": "module.exports = a = async ({params}) => {\n\n//Valid values for row headers, stored in a company variable\nlet validRows = params.validRows\n//Valid values for column headers, stored in a company variable\nlet validColumns = params.validColumns\n//Characters allowed in values in the grid, stored in a company variable\nlet validValuesInGrid = params.validValuesInGrid\n//Number of columns that the generated grid card will have\nlet numAllowedCols = params.numAllowedCols\n//Numberr of rows that the generated grid card will have\nlet numAllowedRows = params.numAllowedRows\n//Number of characters that should ee stored in each cell\nlet numCharsPerCell = params.numCharsPerCell\n\n//** Perform data integrity checks **\n//Ensure that the number of requested rows doesn't exceed the possible values\nif (numAllowedCols > validColumns.length) { return({\"gridCardReturn\":{\"Error\":\"Requested number of colums exceeds number of valid column names\"}}) }\n//Ensure that the number of requested columns doesn't exceed the possible values\nif (numAllowedRows > validRows.length) { return({\"gridCardReturn\":{\"Error\":\"Requested number of rows exceeds number of valid row names\"}}) }\n\n//Generate an empty grid card\nfunction initializeGridCard(gridCard, validRows, validColumns, numAllowedCols, numAllowedRows) {\n  for( let column_index = 0; column_index < parseInt(numAllowedCols); column_index++) {\n    let current_column = validColumns.charAt(column_index)\n    gridCard[current_column] = {}\n\n    for(let row_index = 0; row_index < numAllowedRows; row_index++) {\n      current_row = validRows.charAt(row_index)\n      gridCard[current_column][current_row] = null\n    }\n  }\n\n  return gridCard  \n}\n\n//Put values into the grid card cells\nfunction populateGridCard(gridCard, numCharsPerCell, validValuesInGrid) {\n  for (const [column_key, column_value] of Object.entries(gridCard)) {\n    for (const [row_key, row_value] of Object.entries(column_value)) {\n      let cellValue = \"\"\n      for (cellValueIndex = 0; cellValueIndex < numCharsPerCell; cellValueIndex++) {\n        cellValue += validValuesInGrid.charAt(Math.floor(Math.random() * validValuesInGrid.length))\n      }\n      gridCard[column_key][row_key] = cellValue\n    } \n  }\n}\n\nlet gridCard = {}\n\ngridCard = initializeGridCard(gridCard, validRows, validColumns, numAllowedCols, numAllowedRows)\n\npopulateGridCard(gridCard, numCharsPerCell, validValuesInGrid)\n\n/*function makeid(length) {\n    let result = '';\n    //All capital letters except \"O\" and all numbers\n    const characters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';\n    const charactersLength = characters.length;\n    let counter = 0;\n    while (counter < length) {\n      result += characters.charAt(Math.floor(Math.random() * charactersLength));\n      counter += 1;\n    }\n    return result;\n}*/\n\n/*let gridValues = {}\ngridValues[\"A\"] = {}\ngridValues[\"B\"] = {}\ngridValues[\"C\"] = {}\ngridValues[\"D\"] = {}\ngridValues[\"E\"] = {}\ngridValues[\"F\"] = {}\ngridValues[\"G\"] = {}\ngridValues[\"H\"] = {}\ngridValues[\"I\"] = {}\ngridValues[\"J\"] = {}\n*/\n/*\n//A-K (not I)\nfor (let myLetter = 0; myLetter < 10; myLetter++) {\n  //0-9\n  for(let myNumber = 0; myNumber < 10; myNumber++) {\n    gridValues[String.fromCharCode(65 + myLetter)][myNumber] = makeid(2)\n  }\n\n}\n*/\nreturn {\"gridCardReturn\":gridCard}\n\n}"
+                "value": "module.exports = a = async ({params}) => {\n\n//Valid values for row headers, stored in a company variable\nlet validRows = params.validRows\n//Valid values for column headers, stored in a company variable\nlet validColumns = params.validColumns\n//Characters allowed in values in the grid, stored in a company variable\nlet validValuesInGrid = params.validValuesInGrid\n//Number of columns that the generated grid card will have\nlet numAllowedCols = params.numAllowedCols\n//Numberr of rows that the generated grid card will have\nlet numAllowedRows = params.numAllowedRows\n//Number of characters that should ee stored in each cell\nlet numCharsPerCell = params.numCharsPerCell\n\n//** Perform data integrity checks **\n//Ensure that the number of requested rows doesn't exceed the possible values\nif (numAllowedCols > validColumns.length) { return({\"gridCardReturn\":{\"Error\":\"Requested number of colums exceeds number of valid column names\"}}) }\n//Ensure that the number of requested columns doesn't exceed the possible values\nif (numAllowedRows > validRows.length) { return({\"gridCardReturn\":{\"Error\":\"Requested number of rows exceeds number of valid row names\"}}) }\n\n//Generate an empty grid card\nfunction initializeGridCard(gridCard, validRows, validColumns, numAllowedCols, numAllowedRows) {\n  for( let column_index = 0; column_index < parseInt(numAllowedCols); column_index++) {\n    let current_column = validColumns.charAt(column_index)\n    gridCard[current_column] = {}\n\n    for(let row_index = 0; row_index < numAllowedRows; row_index++) {\n      current_row = validRows.charAt(row_index)\n      gridCard[current_column][current_row] = null\n    }\n  }\n\n  return gridCard  \n}\n\n//Put values into the grid card cells\nfunction populateGridCard(gridCard, numCharsPerCell, validValuesInGrid) {\n  for (const [column_key, column_value] of Object.entries(gridCard)) {\n    for (const [row_key, row_value] of Object.entries(column_value)) {\n      let cellValue = \"\"\n      for (cellValueIndex = 0; cellValueIndex < numCharsPerCell; cellValueIndex++) {\n        cellValue += validValuesInGrid.charAt(Math.floor(Math.random() * validValuesInGrid.length))\n      }\n      gridCard[column_key][row_key] = cellValue\n    } \n  }\n}\n\nlet gridCard = {}\n\ngridCard = initializeGridCard(gridCard, validRows, validColumns, numAllowedCols, numAllowedRows)\n\npopulateGridCard(gridCard, numCharsPerCell, validValuesInGrid)\n\nreturn {\"gridCardReturn\":gridCard}\n\n}"
               },
               "outputSchema": {
                 "value": "{\n\t\"output\": {\n\t\t\"type\": \"object\",\n\t\t\"properties\": {\n\t\t\t\"gridCardReturn\": {\n\t\t\t\t\"type\": \"object\"\n\t\t\t}\n\t\t}\n\t}\n}"
@@ -149,7 +149,12 @@
         {
           "data": {
             "id": "z9drwpkmo7",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {
+              "lcq9ljj5m9": {
+                "value": "allTriggersFalse"
+              }
+            }
           },
           "position": {
             "x": 608,
@@ -209,7 +214,12 @@
         {
           "data": {
             "id": "rtwg1nzzfa",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {
+              "kk6wp7cfge": {
+                "value": "allTriggersFalse"
+              }
+            }
           },
           "position": {
             "x": 856,
@@ -295,6 +305,66 @@
           "position": {
             "x": 277,
             "y": 236.5
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "kk6wp7cfge",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Unable to write grid card to user - please ensure that the custom JSON attribute named gridCard is configured in the PingOne directory\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1020,
+            "y": 360
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "lcq9ljj5m9",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Failed to generate grid card.\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 750,
+            "y": 360
           },
           "group": "nodes",
           "removed": false,
@@ -420,6 +490,44 @@
           "grabbable": true,
           "pannable": true,
           "classes": ""
+        },
+        {
+          "data": {
+            "id": "akaqto0tmn",
+            "source": "rtwg1nzzfa",
+            "target": "kk6wp7cfge"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "iy0fnpe3vp",
+            "source": "z9drwpkmo7",
+            "target": "lcq9ljj5m9"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
         }
       ]
     },
@@ -441,7 +549,7 @@
     }
   },
   "flowColor": "#E3F0FF",
-  "savedDate": 1727198648259,
+  "savedDate": 1727200488112,
   "variables": [
     {
       "context": "flowInstance",
